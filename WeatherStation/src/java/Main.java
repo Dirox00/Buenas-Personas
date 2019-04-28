@@ -1,15 +1,29 @@
 package main;
 
-import java.util.*;
-import java.io.*;
-import java.net.*;
+import java.util.ArrayList;
 
 public class Main {
+  
+	private static FileManager fileManager;
+	private static URLManager urlManager;
+	private static Server server;
 
-	public static void main (String [] args)  {
+	public static void main(String[] args) {	
+		System.out.println("Main:");
+		startServer();
+	}
 
-		System.out.println("Hola, Mundo!");
+	private static void startServer () {
+		server = new Server(9090);
+		server.start();
+	}
 
+	private static void stopServer () {
+		if (server.isRunning()) {
+			server.stop();
+		} else {
+			System.out.println("Server is not running:");
+		}
 	}
 
 }
