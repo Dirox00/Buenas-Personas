@@ -1,7 +1,11 @@
 package main;
 
-import java.io.*;
-import java.net.*;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.io.PrintWriter;
+import java.io.BufferedReader;
+import java.io.IOException;
 
 public class Server implements Runnable {
 
@@ -22,22 +26,22 @@ public class Server implements Runnable {
 	@Override
 	public void run () {
 		while (true) {
-		try (
-			ServerSocket serverSocket = new ServerSocket(port);
-			Socket socket = serverSocket.accept();
-			BufferedReader bufferedReader = new BufferedReader(
+			try (
+				ServerSocket serverSocket = new ServerSocket(port);
+				Socket socket = serverSocket.accept();
+				BufferedReader bufferedReader = new BufferedReader(
 							new InputStreamReader(
 							socket.getInputStream()));
-			PrintWriter printWriter = new PrintWriter(
+				PrintWriter printWriter = new PrintWriter(
 							socket.getOutputStream());
-		) {
-			String string;
-			while ((string = bufferedReader.readLine()) != null) {
-				System.out.println(string);
+			) {
+				String string;
+				while ((string = bufferedReader.readLine()) != null) {
+					System.out.println(string);
+				}
+			}catch (IOException e) {
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		}
 	}
 

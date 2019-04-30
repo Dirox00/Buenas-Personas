@@ -1,8 +1,14 @@
 package main;
 
-import java.net.*;
-import java.util.*;
-import java.io.*;
+import java.util.ArrayList;
+
+import java.net.URLConnection;
+import java.net.URL;
+import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 
 public class URLManager {
 
